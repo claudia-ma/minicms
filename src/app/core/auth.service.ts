@@ -1,5 +1,5 @@
-import { Injectable, isDevMode } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap, map } from 'rxjs';
 
 import { ApiService } from './api.service';
@@ -13,8 +13,6 @@ export interface AuthUser {
 export interface LoginResponse {
   user?: AuthUser;
   token?: string;
-
-  // Por si el backend devuelve otros nombres
   access_token?: string;
   data?: {
     token?: string;
@@ -34,35 +32,47 @@ export class AuthService {
     password: string
   ): Observable<{ token: string; user?: AuthUser }> {
     return this.http
-  .post<LoginResponse>(`${this.api.baseUrl}/auth/login`, { email, password })
-  .pipe(
-    map((res: any) => {
-      const token =
-        res?.token ||
-        res?.access_token ||
-        res?.data?.token ||
-        res?.data?.access_token;
+      .post<LoginResponse>(`${this.api.baseUrl}/auth/login`, { email, password })
+      .pipe(
+        map((res) => {
+          const token =
+            res?.token ||
+            res?.access_token ||
+            res?.data?.token ||
+            res?.data?.access_token;
 
-      if (!token) {
-        throw new Error('Login OK pero el backend no devolvió token');
-      }
+          if (!token) {
+            throw new Error('Login OK pero el backend no devolvió token');
+          }
 
-      localStorage.setItem(this.tokenKey, token);
+          const user = res?.user || res?.data?.user;
 
-      const user = res?.user || res?.data?.user;
+          localStorage.setItem(this.tokenKey, token);
 
-      return { token, user };
-    })
-  );
+          return { token, user };
+        })
+      );
   }
 
   me(): Observable<AuthUser> {
-    return this.http.get<AuthUser>(`${this.api.baseUrl}/auth/me`);
+    const token = this.getToken();
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+
+    return this.http.get<AuthUser>(`${this.api.baseUrl}/auth/me`, { headers });
   }
 
   logout(): Observable<void> {
+    const token = this.getToken();
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+
     return this.http
-      .post<void>(`${this.api.baseUrl}/auth/logout`, {})
+      .post<void>(`${this.api.baseUrl}/auth/logout`, {}, { headers })
       .pipe(tap(() => localStorage.removeItem(this.tokenKey)));
   }
 
