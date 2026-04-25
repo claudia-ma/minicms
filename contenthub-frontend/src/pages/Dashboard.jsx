@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Toast from "../components/Toast";
 
 function Dashboard() {
+  const API_URL = import.meta.env.VITE_API_URL;
   const [contents, setContents] = useState([]);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
@@ -43,7 +44,7 @@ function Dashboard() {
   const handleDelete = async (id) => {
     try {
       const res = await fetch(
-        `http://127.0.0.1:8000/api/contents/${id}`,
+        `${API_URL}/api/contents/${id}`,
         {
           method: "DELETE",
         }
@@ -69,7 +70,7 @@ function Dashboard() {
   };
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/contents?t=${Date.now()}`)
+    fetch(`${API_URL}/api/contents?t=${Date.now()}`)
       .then((res) => res.json())
       .then((data) => setContents(data))
       .catch((err) => console.error("Error loading contents:", err));

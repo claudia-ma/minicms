@@ -13,7 +13,7 @@ function EditContent() {
   });
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/contents/${id}`)
+    fetch(`${API_URL}/api/contents/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setForm({
@@ -37,7 +37,7 @@ function EditContent() {
     e.preventDefault();
 
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/contents/${id}`, {
+      const res = await fetch(`${API_URL}/api/contents/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
