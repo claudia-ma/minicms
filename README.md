@@ -4,7 +4,6 @@ ContentHub is a modern editorial CMS built with React and Laravel, designed to p
 
 The project combines a minimalist editorial interface with full CRUD functionality, real-time filtering, search capabilities and polished UI interactions inspired by modern SaaS and publishing platforms.
 
-⸻
 
 ## Overview
 
@@ -12,7 +11,6 @@ ContentHub was developed as a full-stack project focused on creating a professio
 
 The interface was designed with strong attention to hierarchy, spacing, usability and interaction feedback to create a more refined product-oriented experience.
 
-⸻
 
 ## Features 
 - Create, edit and delete content
@@ -27,80 +25,80 @@ The interface was designed with strong attention to hierarchy, spacing, usabilit
 - Responsive layout structure
 - Environment variable configuration for deployment
 
-⸻
 
 ## Tech Stack
 
-# Frontend
+### Frontend
 
 - React
 - Vite
 - CSS3
 
-# Backend
+### Backend
 
 - Laravel
 - REST API architecture
 
-# Other
+### Other
 
 - Environment variables for API management
 - Modular component structure
 - Git version control
 
-⸻
-
 ## Project Structure
 
+```plaintext
 ContentHub — Mini CMS/
 ├── contenthub-api/        # Laravel backend API
 ├── contenthub-frontend/   # React frontend
+├── screenshots/
+└── README.md
+```
 
-⸻
 
 ## UI & UX Focus
 
 The project places strong emphasis on:
 
-- editorial-inspired layout design
-- clean visual hierarchy
-- polished interaction feedback
-- lightweight animations
-- readable content structure
-- intuitive dashboard navigation
+- Editorial-inspired layout design
+- Clean visual hierarchy
+- Polished interaction feedback
+- Lightweight animations
+- Readable content structure
+- Intuitive dashboard navigation
 
-⸻
 
 ## Screenshots
 
-# Dashboard
+### Dashboard Overview
 
-Add dashboard screenshot here
+![Dashboard Overview](./screenshots/dashboard-overview.png)
 
-# Content Cards
+### Content Cards
 
-Add content cards screenshot here
+![Content Cards](./screenshots/content-cards.png)
 
-# Create Content View
+### Create Content Flow
 
-Add create content screenshot here
-
-⸻
+![Create Content](./screenshots/create-content.png)
 
 ## Local Development
 
-Backend
+### Backend
 
+```bash
 cd contenthub-api
 php artisan serve
+```
 
-Frontend
+### Frontend
 
+```bash
 cd contenthub-frontend
 npm install
 npm run dev
+```
 
-⸻
 
 ## Environment Variables
 
@@ -108,24 +106,26 @@ Frontend uses environment variables for API configuration.
 
 Create a .env file inside contenthub-frontend:
 
+```env
 VITE_API_URL=http://127.0.0.1:8000
+```
 
-⸻
+
 
 ## Future Improvements
 
-* Authentication system
-* Rich text editor
-* Media uploads
-* Content scheduling
-* Dark mode
-* Analytics dashboard
-* Role-based permissions
+- Authentication system
+- Rich text editor
+- Media uploads
+- Content scheduling
+- Dark mode
+- Analytics dashboard
+- Role-based permissions
 
-⸻
 
 ## Author
 
-# Claudia Aguilar
+### Claudia Aguilar
 
-Frontend Developer focused on modern UI systems, editorial experiences and full-stack web applications.
+Frontend Developer focused on modern UI systems, editorial experiences and full-stack web applications built with React and Laravel.
+
